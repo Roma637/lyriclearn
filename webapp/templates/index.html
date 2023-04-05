@@ -6,15 +6,25 @@
 <body>
     <h1>just so i know this works</h1>
 
-    <form action="/response" method="post">
+    <form method="post">
 
-        <select name="nursery_rhyme" id="nursery_rhyme" value="which nursery rhyme do you want?">
+        <p>Which nursery rhyme would you want?</p>
+
+        <select name="nursery_rhyme" id="nursery_rhyme">
             <option value="london"> London Bridge is Falling Down</option>
             <option value="twinkle"> Twinkle Twinkle Little Star</option>
             <option value="ants"> The Ants are Marching One by One</option>
             <option value="frere"> Are You Sleeping Brother John</option> 
             <option value="weasel"> Pop Goes The Weasel</option>
         </select>
+
+        <p>What topic would you want it to be about</p>
+
+        <input type="text" name="topic" id="topic">
+
+        <p>What keywords would you want in it? (optional) (separate each one with a comma)</p>
+
+        <input type="text" name="keywords" id="keywords">
 
         <button type="submit">submit</button>
 

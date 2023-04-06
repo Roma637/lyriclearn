@@ -7,7 +7,7 @@ def ask_gpt(rhyme, topic, keywords):
     rhymes_instructions = {
         'london':"each verse has four lines. the first line has 7 syllables, the second line has 6 syllables, the third line has 7 syllables, and the fourth line has 6 syllables.", 
         'twinkle':"each verse has six lines, and each line has 7 syllables.", 
-        'ants':"each verse has four lines. the first and second line have 12 syllables, the third line has 16 syllables, and the fourth line has 13 syllables.", 
+        # 'ants':"each verse has four lines. the first and second line have 12 syllables, the third line has 16 syllables, and the fourth line has 13 syllables.", 
         'frere':"each verse has four lines. the first line has 8 syllables, the second line has 6 syllables, the third line has 12 syllables, and the fourth line has 6 syllables.", 
         'weasel':"each verse has four lines. the first line has 9 syllables, the second line has 7 syllables, the third line has 9 syllables, the fourth line has 5 syllables."
         }
@@ -21,7 +21,7 @@ def ask_gpt(rhyme, topic, keywords):
             gpt_prompt.append(kw+", ")
         gpt_prompt = gpt_prompt[-2:]
 
-    print("====================")
+    # print("====================")
     print(gpt_prompt)
 
     gpt_prompts = 5 * [gpt_prompt]
@@ -39,7 +39,7 @@ def ask_gpt(rhyme, topic, keywords):
         gpt_response = response['choices'][0]['text']
         print(gpt_response)
 
-        final_responses.append(gpt_response)
+        final_responses.append(gpt_response.strip())
 
     return final_responses
 

@@ -12,7 +12,7 @@
         {%endfor%}
     </ol> -->
 
-    <form action="/download" method="POST">
+    <form action="/audio" method="POST">
         <span style="white-space: pre-line" >
             {% for num in seq%}
             <input type="radio" value={{num}} name="which_one"> {{response[num]}} </input>

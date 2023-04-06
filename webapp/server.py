@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, send_file
 from gpt3_request import ask_gpt
-from music import generate_music
+# from music import generate_music
 
 app = Flask(__name__)
 
@@ -16,7 +16,7 @@ def options():
     global response
     rhyme = request.form['nursery_rhyme']
     topic = request.form['topic']
-    keywords = request.form['keywords']
+    keywords = request.form['keywords'].split(",")
     response = ask_gpt(rhyme, topic, keywords)
 
     return render_template('intermediate.html', response=response, seq=[i for i in range(len(response))])
@@ -29,11 +29,11 @@ def audio():
     final_rhyme = response[int(num)]
     print(final_rhyme)
 
-    filepath = generate_music(final_rhyme, num)
+    # filepath = generate_music(final_rhyme, num)
 
     return render_template('download.html')
 
-@app.route("/download")
+@app.route("/download", methods=['GET', 'POST'])
 def serve():
     global filepath
     return send_file(filepath, as_attachment=True)

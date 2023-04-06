@@ -1,27 +1,19 @@
-import os
 import openai
-import wandb
-
-os.environ['OPENAI_API_KEY'] = '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'
-
-openai.api_key= os.getenv('OPENAI_API_KEY')
-
-run = wandb.init(project='GPT-3 in Python')
-prediction_table = wandb.Table(columns=["prompt", "completion"])
-
-rhymes_instructions = {
-    'london':"london bridge is falling down", 
-    'twinkle':"twinkle twinkle littne star", 
-    'ants':"the ants go marching one by one", 
-    'frere':"frere jacques", 
-    'weasel':"pop goes the weasel"
-    }
 
 def ask_gpt(rhyme, topic, keywords):
 
-    print("HI.")
+    openai.api_key= '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'
 
-    gpt_prompt = "write lyrics about " + topic + " that can be set to the nursery rhyme " + rhyme 
+    rhymes_instructions = {
+        'london':"each verse has four lines. the first line has 7 syllables, the second line has 6 syllables, the third line has 7 syllables, and the fourth line has 6 syllables.", 
+        'twinkle':"each verse has six lines, and each line has 7 syllables.", 
+        'ants':"each verse has four lines. the first and second line have 12 syllables, the third line has 16 syllables, and the fourth line has 13 syllables.", 
+        'frere':"each verse has four lines. the first line has 8 syllables, the second line has 6 syllables, the third line has 12 syllables, and the fourth line has 6 syllables.", 
+        'weasel':"each verse has four lines. the first line has 9 syllables, the second line has 7 syllables, the third line has 9 syllables, the fourth line has 5 syllables."
+        }
+
+    gpt_prompt = "write lyrics about " + topic + " where " + rhymes_instructions[rhyme] + "use as many verses as necessary."
+    # gpt_prompt = "write a poem about elasticity in economics where there are 18 lines, and each line is 7 syllables. make sure it is only 5 verses maximum with no chorus, and that it mentions the types of elasticity like price elasticity of demand or supply, cross price elasticity of demand and income elasticity of demand"
 
     if len(keywords)>0:
         gpt_prompt.append(". ensure it includes these keywords: ")
@@ -32,21 +24,25 @@ def ask_gpt(rhyme, topic, keywords):
     print("====================")
     print(gpt_prompt)
 
-    response = openai.Completion.create(
-        engine="text-davinci-002", #the most capable variation of GPT-3
-        prompt=gpt_prompt,
-        temperature=0.5, #randomness
-        max_tokens=256,
-        top_p=1.0,
-        frequency_penalty=0.0,
-        presence_penalty=0.0
-    )
+    gpt_prompts = 5 * [gpt_prompt]
 
-    gpt_response = response['choices'][0]['text']
-    print(gpt_response)
-    prediction_table.add_data(gpt_prompt, gpt_response)
+    final_responses = []
 
-    wandb.log({'predictions':prediction_table})
-    wandb.finish()
+    for gpt_prompt_opt in gpt_prompts:
+        response = openai.Completion.create(
+            engine="text-davinci-002", #the most capable variation of GPT-3
+            prompt=gpt_prompt_opt,
+            temperature=0.7, #randomness
+            max_tokens=300,
+        )
 
-    return gpt_response
+        gpt_response = response['choices'][0]['text']
+        print(gpt_response)
+
+        final_responses.append(gpt_response)
+
+    return final_responses
+
+#todo
+
+#keywords not keywording

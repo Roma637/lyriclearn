@@ -6,7 +6,7 @@ import scipy.signal as sig
 import psola
 from pathlib import Path
 from datetime import datetime
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
 
 def generate_music(text, melodyChoice):
 
@@ -102,5 +102,7 @@ def generate_music(text, melodyChoice):
 
     newY = tuner(y, sr, melody)
 
-    # filepath = Path("audio_files/voice.mp3")
-    sf.write(Path(secure_filename(f"audio_files/song_{now}.mp3")), newY, sr)
+    filepath = Path(secure_filename(f"audio_files/song_{now}.mp3"))
+    sf.write(filepath, newY, sr)
+
+    return filepath

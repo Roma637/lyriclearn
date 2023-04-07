@@ -11,21 +11,18 @@ import os
 
 def generate_music(text, melodyChoice):
 
+    #this is to ensure a unique filename
     now = datetime.now().strftime("%m %d %H %M %S")
 
-    #count num of verses/ lines
+    #count num of verses/lines
     lineNum = len([i for i in text.split('\n') if i!= ''])
     # print(lineNum)
-    
 
     #format text for text to speech
-    # verseNum = len(text.split("\n\n"))
     text = text.replace(',', '')
     text = text.replace('.', '')
     text = text.replace("\n", ",")
-    # text = text.replace('.', '')
-    # text = text.replace(',', '')
-    print(repr(text))
+    print(repr(text)) #debugging :)
 
     #text to speech
     def converter(text):
@@ -54,47 +51,46 @@ def generate_music(text, melodyChoice):
     y, sr = librosa.load(Path(t_filename))
 
     melodyDict =  {"london": [["G4","G4","G4","A4","G4","G4","F4","F4",
-                        "E4","E4","F4","F4","G4","G4","G4","G4"], #
+                        "E4","E4","F4","F4","G4","G4","G4","G4"], 
                         ["D4","D4","E4","E4","F4","F4","F4","F4",
-                        "E4","E4","F4","F4","G4","G4","G4","G4"],#
+                        "E4","E4","F4","F4","G4","G4","G4","G4"],
                         ["G4","G4","G4","A4","G4","G4","F4","F4",
-                        "E4","E4","F4","F4","G4","G4","G4","G4"],#
+                        "E4","E4","F4","F4","G4","G4","G4","G4"],
                         ["D4","D4","D4","D4","G4","G4","G4","G4",
-                        "E4","E4","C4","C4","C4","C4","C4","C4"]], #lond
-                "twinkle": [["D4","A4","B4","A4"],#twinkle teinkle lil star 
-                            ["G4","F#4","E4","D4"],  #how i wondeer what you are
-                        ["A4","G4","F#4","E4"], #up above the world so high
+                        "E4","E4","C4","C4","C4","C4","C4","C4"]],
+                "twinkle": [["D4","A4","B4","A4"],#twinkle twinkle little star 
+                            ["G4","F#4","E4","D4"],  #how i wonder what you are
+                        ["A4","G4","F#4","E4"],
                         ["A4","G4","F#4","E4"],
                         ["D4","A4","B4","A4"],
-                        ["G4","F#4","E4","D4"]], #twin
+                        ["G4","F#4","E4","D4"]],
                 "frere": [["C4","C4","D4","D4","E4","E4","C4","C4", #are you sleeping
                         "C4","C4","D4","D4","E4","E4","C4","C4"], #are you sleeping
-                        ["E4","E4","F4","F4","G4","G4","G4","G4", #brother john
-                        "E4","E4","F4","F4","G4","G4","G4","G4"], #brother h=john
+                        ["E4","E4","F4","F4","G4","G4","G4","G4",
+                        "E4","E4","F4","F4","G4","G4","G4","G4"],
                         ["G4","A4","G4","F4","E4","E4","C4","C4",
-                        "G4","A4","G4","F4","E4","E4","C4","C4"],#
+                        "G4","A4","G4","F4","E4","E4","C4","C4"],
                         ["C4","C4","G3","G3","C4","C4","C4","C4",
-                        "C4","C4","G3","G3","C4","C4","C4","C4"]], #frer
-                "weasel": [["C4","C4","C4","D4","D4","D4", #round and round the
-                        "E4","G4","E4","C4","C4","A3"], #
+                        "C4","C4","G3","G3","C4","C4","C4","C4"]], #frere
+                "weasel": [["C4","C4","C4","D4","D4","D4", #round and round the mulberry bush
+                        "E4","G4","E4","C4","C4","A3"], #the monkey chased the weasel
                         ["C4","C4","C4","D4","D4","D4",
-                        "E4","E4","E4","C4","C4","A3"],#
+                        "E4","E4","E4","C4","C4","A3"],
                         ["C4","C4","C4","D4","D4","D4",
-                        "E4","G4","E4","C4","C4","C4"],#
+                        "E4","G4","E4","C4","C4","C4"],
                         ["A4","A4","A4","D4","D4","F4",
-                        "E4","E4","E4","C4","C4","C4"]]} #popg
+                        "E4","E4","E4","C4","C4","C4"]]} #pop goes
 
-    
-
-    # melody = melodyDict[melodyChoice]*verseNum
-    # print(melody)
+    #sometimes, the response generated might be too long for just one round of the melody
+    #this piece of code figures out how many times to repeat so that the melody fits all the words
     allLines = melodyDict[melodyChoice]
     melody = []
     for i in range(lineNum):
         print(allLines[i%len(allLines)])
         melody.extend(allLines[i%len(allLines)])
-    # print(melody)
 
+
+    #technical stuff
     def corrector(f0, melody):
         phaseLen = len(f0)//len(melody)
         currPhase = 0
@@ -114,7 +110,6 @@ def generate_music(text, melodyChoice):
         return smoothed_allTuned
 
     def tuner(y, sr, melody):
-        #tracking pitch
         frame_length = 2048 #length of the analysis frame
         hop_length = frame_length//4
         fmin = librosa.note_to_hz("C2")
@@ -136,7 +131,7 @@ def generate_music(text, melodyChoice):
     temp_filename = secure_filename(f"song_{now}.mp3")
     temp_filename = os.path.join('audio_files', temp_filename)
     filepath = Path(temp_filename)
-    # print(filepath)
+
     sf.write(filepath, newY, sr)
 
     return filepath

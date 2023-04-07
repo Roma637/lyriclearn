@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>LyricLearner</title>
+    <title>LyricLearn</title>
+	<link rel="stylesheet" href="static\design1.css">
 </head>
 <body>
-    <h1>just so i know this works</h1>
+    <h1>LyricLearn</h1>
+	
+	<h2>Learning differently</h2>
+	<p>Unable to memorise content efficiently? Worry not! 
+	Choose a nursery rhyme,<br> a topic, add in necessary keywords
+	and let the AI generate a song for you<br> to memorise the content!</p>
 
-    <form method="post" action="/choices">
+    <form id="form" method="post" action="/choices">
 
-        <p>Which nursery rhyme would you want?</p>
+        <p>Nursury Rhyme:</p>
 
         <select name="nursery_rhyme" id="nursery_rhyme">
             <option value="london"> London Bridge is Falling Down</option>
@@ -18,15 +24,15 @@
             <option value="weasel"> Pop Goes The Weasel</option>
         </select>
 
-        <p>What topic would you want it to be about</p>
+        <p>Topic:</p>
 
         <input type="text" name="topic" id="topic">
 
-        <p>What keywords would you want in it? (optional) (separate each one with a comma)</p>
+        <p>Keywords (optional, separate with commas):</p> <!--separte through comma-->
 
-        <input type="text" name="keywords" id="keywords">
+        <input type="text" name="keywords" id="keywords"><br><br>
 
-        <button type="submit">submit</button>
+        <button type="submit">Submit</button>
 
     </form>
 

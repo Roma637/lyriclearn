@@ -2,8 +2,19 @@
 <html lang="en">
 <head>
     <title>Download</title>
+    <link rel="stylesheet" href="static\design3.css">
 </head>
 <body>
-    <button action="/download"> Click here to download your audio file! </button>
+    <section id="banner">
+        <h1>Here is your audio file!</h1>
+    </section>
+
+    <h3>{{final_rhyme}}</h3>
+
+    <!-- <audio controls>
+        <source src="{{filepath}}" type="audio/mpeg">
+    </audio>-->
+    <br>
+    <a href="{{ url_for('serve') }}">Click here to download your audio file!</a>
 </body>
 </html>

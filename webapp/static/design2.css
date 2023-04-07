@@ -1,0 +1,69 @@
+body {
+	background-color: #FFFAED;
+	/*background: linear-gradient(180deg, #756C6C 0%, #EADAC3 61%);*/
+	/* background-image: url("lofi2.jpg"); */
+	/* background-size: 100%; */
+	/* background-position: center top 50%; */
+	/* background-repeat: no-repeat; */
+}
+
+#banner {
+	/* width: 100%;
+	background-image: url("lofi2.jpg");
+	background-size: cover; */
+	width: 100%;
+	background-image: url('lofi2.jpg');
+  	background-repeat: no-repeat;
+  	background-attachment: fixed;
+  	background-position: center;
+	border-radius: 10px;
+  }
+
+
+h1 {
+	color: #1A1919;
+	font-family: "Bahnschrift SemiBold";
+	font-size: 100px;	
+}
+
+h2 {
+	color: #1A1919;
+	font-family: "Bahnschrift SemiBold";
+	font-size: 50px;
+}
+
+/* #form{
+	/* position: fixed;
+	top: 30%;
+	right: 10%; */
+
+/* input[type=radio] {
+	/* width: 300px;
+	padding: 12px 20px;
+	box-sizing: border-box;
+	border-radius: 10px; */
+	/* position: fixed;
+	left: 20% */
+
+button[type="submit"] {
+	font-family: "Bahnschrift";
+	font-size: 20px;
+	box-sizing: border-box;
+	border-radius: 10px;
+}
+
+button[type="button"] {
+	font-family: "Bahnschrift";
+	font-size: 20px;
+	box-sizing: border-box;
+	border-radius: 10px;
+}
+
+#span {
+	white-space: pre-line;
+	font-family: "Bahnschrift";
+	font-size: 20px;
+	/* position: fixed;
+	bottom: 10%;
+	right: 20%; */
+}

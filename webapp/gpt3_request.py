@@ -2,7 +2,7 @@ import openai
 
 def ask_gpt(rhyme, topic, keywords):
 
-    openai.api_key= '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'
+    openai.api_key= '' #add in your own API key here!
 
     rhymes_instructions = {
         'london':"each verse has four lines. the first line has 7 syllables, the second line has 6 syllables, the third line has 7 syllables, and the fourth line has 6 syllables.", 
@@ -12,19 +12,20 @@ def ask_gpt(rhyme, topic, keywords):
         'weasel':"each verse has four lines. the first line has 9 syllables, the second line has 7 syllables, the third line has 9 syllables, the fourth line has 5 syllables."
         }
 
-    gpt_prompt = "write lyrics about " + topic + " where " + rhymes_instructions[rhyme] + " use as many verses as necessary. " 
+    gpt_prompt = "write a poem about " + topic + " where " + rhymes_instructions[rhyme] + " use as many verses as necessary. " 
     # gpt_prompt = "write a poem about elasticity in economics where there are 18 lines, and each line is 7 syllables. make sure it is only 5 verses maximum with no chorus, and that it mentions the types of elasticity like price elasticity of demand or supply, cross price elasticity of demand and income elasticity of demand"
 
 
-    if len(keywords)>0:
+    if keywords != ['']:
         print("KEYWORDS IS")
         print(keywords)
         print(type(keywords))
         
-        gpt_prompt = gpt_prompt + "ensure it includes these keywords: "
-        for kw in keywords:
-            # gpt_prompt.append(kw+", ")
-            gpt_prompt = gpt_prompt + kw + " "
+        gpt_prompt = gpt_prompt + "ensure it includes the keywords: "
+        # for kw in keywords:
+        #     # gpt_prompt.append(kw+", ")
+        #     gpt_prompt = gpt_prompt + kw + " "
+        gpt_prompt += ','.join(keywords) + '.'
 
     print("========PROMPT========")
     print(gpt_prompt)

@@ -1,0 +1,56 @@
+body {
+	background-color: #FFFAED;
+	/*background: linear-gradient(180deg, #756C6C 0%, #EADAC3 61%);*/
+	background-image: url("lofi2.jpg");
+	background-size: 100%;
+	background-position: center bottom 200%;
+	background-repeat: no-repeat;
+}
+
+
+h1 {
+	color: #1A1919;
+	font-family: "Bahnschrift SemiBold";
+	font-size: 100px;	
+}
+
+h2 {
+	color: #1A1919;
+	font-family: "Bahnschrift SemiBold";
+	font-size: 50px;
+}
+
+p {
+	font-family: "Bahnschrift";
+	font-size: 20px;
+}
+
+#form{
+	position: fixed;
+	top: 30%;
+	right: 10%;
+}
+
+select[id="nursery_rhyme"]{
+	font-family: "Bahnschrift";
+	font-size: 20px;
+	padding: 12px 20px;
+	box-sizing: border-box;
+	border-radius: 10px;
+}
+
+input[type=text] {
+  width: 300px;
+  font-family: "Bahnschrift";
+  font-size: 20px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+button[type="submit"] {
+	font-family: "Bahnschrift";
+	font-size: 20px;
+	box-sizing: border-box;
+	border-radius: 10px;
+}

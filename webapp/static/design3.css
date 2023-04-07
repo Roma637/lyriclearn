@@ -1,0 +1,58 @@
+body {
+	background-color: #FFFAED;
+	/*background: linear-gradient(180deg, #756C6C 0%, #EADAC3 61%);*/
+	/* background-image: url("lofi2.jpg"); */
+	/* background-size: 100%; */
+	/* background-position: center top 50%; */
+	/* background-repeat: no-repeat; */
+}
+
+#banner {
+	/* width: 100%;
+	background-image: url("lofi2.jpg");
+	background-size: cover; */
+    padding-top: 2%;
+    padding-bottom: 2%;
+	background-image: url('lofi2.jpg');
+  	background-repeat: no-repeat;
+  	background-attachment: fixed;
+  	background-position: center;
+	border-radius: 10px;
+  }
+
+input {
+    color: #1A1919;
+    font-family: "Bahnschrift SemiBold";
+    font-size: 20px;
+}
+
+h1 {
+	color: #1A1919;
+	font-family: "Bahnschrift SemiBold";
+	font-size: 100px;	
+}
+
+h3 {
+	color: #1A1919;
+	font-family: "Bahnschrift SemiBold";
+	font-size: 20px;
+    white-space: pre-line;
+}
+
+a:link, a:visited {
+    color: #1A1919;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family: "Bahnschrift SemiBold";
+	font-size: 20px;
+    box-sizing: border-box;
+	border-radius: 10px;
+    background-color: #d09a9a;
+    border-color: #1A1919;
+  }
+  
+a:hover, a:active {
+    background-color: #c19999;
+  }

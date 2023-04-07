@@ -1,0 +1,9 @@
+flask
+openai
+pyttsx3
+librosa
+soundfile
+numpy
+scipy
+psola
+pathlib

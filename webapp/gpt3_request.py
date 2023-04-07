@@ -35,7 +35,7 @@ def ask_gpt(rhyme, topic, keywords):
     #submit the same prompt 5 times
     for gpt_prompt_opt in gpt_prompts:
         response = openai.Completion.create(
-            engine="text-davinci-002",
+            engine="text-davinci-003",
             prompt=gpt_prompt_opt,
             temperature=0.7,
             max_tokens=300,
